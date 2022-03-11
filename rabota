@@ -9,6 +9,9 @@ while True:
         if c.isdigit():
             num = num + c
             count = count + 1
+    if count == 0:
+        print("There are no numbers")
+        break
     print("number " + "| count")
     print("  0       ", line.count('0'))
     print("  1       ", line.count('1'))
@@ -21,4 +24,5 @@ while True:
     print("  8       ", line.count('8'))
     print("  9       ", line.count('9'))
     print("total:", count)
-file.close()  
+file.close()
+
