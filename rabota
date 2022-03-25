@@ -1,28 +1,35 @@
-file = open('C:/pythonProject/file.txt', 'r')
-while True:
-    line = file.readline()
-    if not line:
-        break
-    num = " "
-    count = 0
-    for c in line:
-        if c.isdigit():
-            num = num + c
-            count = count + 1
-    if count == 0:
-        print("There are no numbers")
-        break
-    print("number " + "| count")
-    print("  0       ", line.count('0'))
-    print("  1       ", line.count('1'))
-    print("  2       ", line.count('2'))
-    print("  3       ", line.count('3'))
-    print("  4       ", line.count('4'))
-    print("  5       ", line.count('5'))
-    print("  6       ", line.count('6'))
-    print("  7       ", line.count('7'))
-    print("  8       ", line.count('8'))
-    print("  9       ", line.count('9'))
-    print("total:", count)
+buffer_len = 1
+try:
+    file = open('C:/pythonProject/file7.txt', 'r')
+    print("Результат работы программы:")
+    buffer = file.read(buffer_len)
+    if not buffer:
+        print("Файл пустой")
+    while True:
+       line = file.readline()
+       if not line:
+           break
+       num = " "
+       count = 0
+       for c in line:
+           if c.isdigit():
+               num = num + c
+               count = count + 1
+       if count == 0:
+           print("В тексте файла нет цифр")
+           break
+       print("number " + "| count")
+       print("  0       ", line.count('0'))
+       print("  1       ", line.count('1'))
+       print("  2       ", line.count('2'))
+       print("  3       ", line.count('3'))
+       print("  4       ", line.count('4'))
+       print("  5       ", line.count('5'))
+       print("  6       ", line.count('6'))
+       print("  7       ", line.count('7'))
+       print("  8       ", line.count('8'))
+       print("  9       ", line.count('9'))
+       print("total:", count)
+except FileNotFoundError:
+    print("Файл не найден")
 file.close()
-
