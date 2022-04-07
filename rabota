@@ -1,35 +1,41 @@
+import time
 buffer_len = 1
+num = " "
+count = 0
 try:
-    file = open('C:/pythonProject/file7.txt', 'r')
+    start = time.time()
+    file = open('C:/pythonProject/file.txt', 'r')
     print("Результат работы программы:")
     buffer = file.read(buffer_len)
     if not buffer:
         print("Файл пустой")
+        exit()
     while True:
-       line = file.readline()
-       if not line:
-           break
-       num = " "
-       count = 0
-       for c in line:
-           if c.isdigit():
-               num = num + c
-               count = count + 1
-       if count == 0:
-           print("В тексте файла нет цифр")
-           break
-       print("number " + "| count")
-       print("  0       ", line.count('0'))
-       print("  1       ", line.count('1'))
-       print("  2       ", line.count('2'))
-       print("  3       ", line.count('3'))
-       print("  4       ", line.count('4'))
-       print("  5       ", line.count('5'))
-       print("  6       ", line.count('6'))
-       print("  7       ", line.count('7'))
-       print("  8       ", line.count('8'))
-       print("  9       ", line.count('9'))
-       print("total:", count)
+        line = file.readline()
+        if not line:
+            break
+        for c in line:
+            if c.isdigit():
+                num = num + c
+                count = count + 1
+        if count == 0:
+            print("В тексте файла нет цифр")
+            exit()
+        print("number " + "| count")
+        print("  0       ", line.count('0'))
+        print("  1       ", line.count('1'))
+        print("  2       ", line.count('2'))
+        print("  3       ", line.count('3'))
+        print("  4       ", line.count('4'))
+        print("  5       ", line.count('5'))
+        print("  6       ", line.count('6'))
+        print("  7       ", line.count('7'))
+        print("  8       ", line.count('8'))
+        print("  9       ", line.count('9'))
+    finish = time.time()
+    result = finish - start
+    print("total:", count)
+    print("Время выполнения программы: " + str(result) + " секунд.")
 except FileNotFoundError:
-    print("Файл не найден")
+    print("Файл не найден. Данного файла или каталога не существует.")
 file.close()
