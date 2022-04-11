@@ -1,4 +1,6 @@
 import time
+from prettytable import PrettyTable
+my_table = PrettyTable()
 buffer_len = 1
 count = 0
 try:
@@ -19,13 +21,14 @@ try:
             if count == 0:
                 print("В тексте файла нет цифр")
                 exit()
-            print("number " + "| count")
-            for num in range(9):
-                print(" ", num, "      ", line.count(str(num)))
+            my_table.field_names = ["Number", "Count"]
+            for num in range(10):
+                my_table.add_row([num, line.count(str(num))])
+            print(my_table)
     finish = time.time()
     result = finish - start
     print("total:", count)
-    print("Время выполнения программы: " + str(round(result, 4)) + " секунд.")
+    print("Время выполнения программы: " + str(result) + " секунд.")
 except FileNotFoundError:
     print("Файл не найден. Данного файла или каталога не существует.")
 file.close()
