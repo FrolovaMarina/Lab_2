@@ -1,41 +1,31 @@
 import time
 buffer_len = 1
-num = " "
 count = 0
 try:
     start = time.time()
-    file = open('C:/pythonProject/file.txt', 'r')
-    print("Результат работы программы:")
-    buffer = file.read(buffer_len)
-    if not buffer:
-        print("Файл пустой")
-        exit()
-    while True:
-        line = file.readline()
-        if not line:
-            break
-        for c in line:
-            if c.isdigit():
-                num = num + c
-                count = count + 1
-        if count == 0:
-            print("В тексте файла нет цифр")
+    with open("C:/pythonProject/file.txt", "r") as file:
+        print("Результат работы программы:")
+        buffer = file.read(buffer_len)
+        if not buffer:
+            print("Файл пустой")
             exit()
-        print("number " + "| count")
-        print("  0       ", line.count('0'))
-        print("  1       ", line.count('1'))
-        print("  2       ", line.count('2'))
-        print("  3       ", line.count('3'))
-        print("  4       ", line.count('4'))
-        print("  5       ", line.count('5'))
-        print("  6       ", line.count('6'))
-        print("  7       ", line.count('7'))
-        print("  8       ", line.count('8'))
-        print("  9       ", line.count('9'))
+        while True:
+            line = file.read()
+            if not line:
+                break
+            for c in line:
+                if c.isdigit():
+                    count = count + 1
+            if count == 0:
+                print("В тексте файла нет цифр")
+                exit()
+            print("number " + "| count")
+            for num in range(9):
+                print(" ", num, "      ", line.count(str(num)))
     finish = time.time()
     result = finish - start
     print("total:", count)
-    print("Время выполнения программы: " + str(result) + " секунд.")
+    print("Время выполнения программы: " + str(round(result, 4)) + " секунд.")
 except FileNotFoundError:
     print("Файл не найден. Данного файла или каталога не существует.")
 file.close()
