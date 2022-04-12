@@ -5,7 +5,7 @@ buffer_len = 1
 count = 0
 try:
     start = time.time()
-    with open("C:/pythonProject/file.txt", "r") as file:
+    with open("file.txt", "r") as file:
         print("Результат работы программы:")
         buffer = file.read(buffer_len)
         if not buffer:
@@ -31,4 +31,3 @@ try:
     print("Время выполнения программы: " + str(result) + " секунд.")
 except FileNotFoundError:
     print("Файл не найден. Данного файла или каталога не существует.")
-file.close()
