@@ -3,31 +3,38 @@ from prettytable import PrettyTable
 my_table = PrettyTable()
 buffer_len = 1
 count = 0
+obj = {}
 try:
     start = time.time()
-    with open("file.txt", "r") as file:
+    with open("C:/pythonProject/file.txt", "r") as file:
         print("Результат работы программы:")
         buffer = file.read(buffer_len)
         if not buffer:
             print("Файл пустой")
             exit()
         while True:
-            line = file.read()
-            if not line:
+            c = file.read(1)
+            if not c:
                 break
-            for c in line:
-                if c.isdigit():
-                    count = count + 1
-            if count == 0:
-                print("В тексте файла нет цифр")
-                exit()
-            my_table.field_names = ["Number", "Count"]
-            for num in range(10):
-                my_table.add_row([num, line.count(str(num))])
-            print(my_table)
+            if c.isdigit():
+                count += 1
+                try:
+                    obj[c] += 1
+                except KeyError:
+                    obj[c] = 1
+        if count == 0:
+            print("В тексте файла нет цифр")
+            exit()
+        my_table.field_names = ["Number", "Count"]
+        for c in range(10):
+            if str(c) in obj:
+                my_table.add_row([c, obj[str(c)]])
+            else:
+                my_table.add_row([c, 0])
+        print(my_table)
     finish = time.time()
     result = finish - start
     print("total:", count)
-    print("Время выполнения программы: " + str(result) + " секунд.")
+    print("Время выполнения программы: " + str(round(result, 5)) + " секунд.")
 except FileNotFoundError:
     print("Файл не найден. Данного файла или каталога не существует.")
